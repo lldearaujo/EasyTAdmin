@@ -1,0 +1,285 @@
+<?php 
+$host = "localhost";
+$user = "root";
+$pass = "";
+$banco = "easyt";
+$conexao = mysql_connect($host, $user, $pass) or die(mysql_error());
+mysql_select_db($banco) or die(mysql_error());
+?>
+<?php 
+    session_start();
+    if(!isset($_SESSION["email"]) || !isset($_SESSION["senha"])) {
+        header ("Location: login.php");
+        exit;
+    } else {
+        echo "Você está logado!";
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="iso-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Tag utilizada para design responsÃ­vos -->
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>EasyT-Dashboard</title>
+
+<!-- Bootstrap -->
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Estilo prÃ³prio do projeto -->
+<link href="../assets/css/estilo.css" rel="stylesheet">
+
+<meta name="description"
+	content="Free Admin Template Based On Twitter Bootstrap 3.x">
+<meta name="author" content="">
+
+<meta name="msapplication-TileColor" content="#5bc0de" />
+<meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="../bootstrap/lib/bootstrap/css/bootstrap.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="../bootstrap/lib/font-awesome/css/font-awesome.css">
+
+<!-- Metis core stylesheet -->
+<link rel="stylesheet" href="../bootstrap/css/main.css">
+
+<!-- metisMenu stylesheet -->
+<link rel="stylesheet" href="../bootstrap/lib/metismenu/metisMenu.css">
+
+<!-- onoffcanvas stylesheet -->
+<link rel="stylesheet" href="../bootstrap/lib/onoffcanvas/onoffcanvas.css">
+
+<!-- animate.css stylesheet -->
+<link rel="stylesheet" href="../bootstrap/lib/animate.css/animate.css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<!-- Barra de NavegaÃ§Ã£o -->
+	<nav class="navbar navbar-default ">
+		<div class="container">
+			<div class="navbar-header">
+
+				<!-- Chamar barra lateral -->
+				<a href="#menu-toggle" class="btn btn-default navbar-left" id="menu-toggle">|||</a>
+				
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#barra-navegacao">
+					<span class="sr-only">Alternar Menu</span>
+					<!--Texto para leitores de tela-->
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand"> <img src="../assets/img/logo.png"
+					width="80" height="27" class="d-inline-block align-top">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="barra-navegacao">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Ajuda</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> UsuÃ¡rio <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Minha Conta</a></li>
+							<li><a href="login.php">Logout</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Encerramento Barra de NavegaÃ§Ã£o -->
+
+
+	<!-- Barra lateral -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li><a href="../index.php#">Dashboard</a></li>
+				<li><a href="#">Tomadas</a></li>
+				<li><a href="agenda.php">Agenda</a></li>
+				<li><a href="relatorios.html">Relatórios</a></li>
+				<li><a href="configuracoes.html">Configurações</a></li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+
+				<div class="container">
+
+					<div class="page-header">
+						<h1>Configurações</h1>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-8">
+							<form>
+								<!-- Categoria Rede -->
+								<div>
+									<h4>Rede</h4>
+									<div class="form-group">
+										<div class="checkbox">
+											<label> <input class="uniform" type="checkbox"
+												value="option1" checked> Obter endereço IP Automaticamente.
+											</label>
+										</div>
+
+										<div class="form-group">
+											<label for="ip" class="control-label col-lg-4">Endereço IP</label>
+											<div class="col-lg-8">
+												<input type="text" id="ip" placeholder="192.168.0.2"
+													class="form-control">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="mask" class="control-label col-lg-4">Máscara de
+												Rede</label>
+
+											<div class="col-lg-8">
+												<input type="text" id="mask" placeholder="255.255.0.0"
+													class="form-control">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="gateway" class="control-label col-lg-4">Gateway</label>
+
+											<div class="col-lg-8">
+												<input type="text" id="gateway" placeholder="192.168.0.1"
+													class="form-control">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="dns" class="control-label col-lg-4">Servidor DNS</label>
+
+											<div class="col-lg-8">
+												<input type="text" id="dns" placeholder="8.8.8.8"
+													class="form-control">
+											</div>
+										</div>
+									</div>
+
+
+									<!-- Categoria WiFi -->
+									<div id="div-1" class="body">
+										<h4>Rede Wirelles</h4>
+										<div class="checkbox">
+											<label class="switch"> <input type="checkbox">
+												<span class="slider round"></span>
+											</label> Ativar rede Wireless
+										</div>
+										<div class="form-group">
+											<label for="ssid" class="control-label col-lg-4">SSID</label>
+											<div class="col-lg-8">
+												<input type="text" id="tarifa"
+													placeholder="Insira o nome de sua rede Wifi"
+													class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="ssid" class="control-label col-lg-4">Senha</label>
+											<div class="col-lg-8">
+												<input type="password" id="tarifa"
+													placeholder="Insira sua senha" class="form-control">
+											</div>
+										</div>
+									</div>
+
+									<!-- Categoria Consumo -->
+									<div id="div-1" class="body">
+										<h4>Consumo</h4>
+										<div class="form-group">
+											<label for="tarifa" class="control-label col-lg-4">Tarifa R$</label>
+											<div class="col-lg-8">
+												<input type="text" id="tarifa"
+													placeholder="Insira a tarifa de energia de seu estado"
+													class="form-control">
+											</div>
+										</div>
+									</div>
+
+									<!-- Categoria Acesso -->
+									<div id="div-1" class="body">
+										<h4>Acesso</h4>
+										<div class="checkbox">
+											<label> <input class="uniform" type="checkbox"
+												value="option1" checked> Habilitar serviço SSH na porta 22
+											</label>
+										</div>
+									</div>
+
+
+
+
+
+									<!--Botão Boolean para escolher estado do relê
+						<div class="checkbox">
+
+							<label class="switch"> <input type="checkbox"> <span
+								class="slider round"></span>
+							</label> Ativar saída selecionada?
+						</div>
+						-->
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<hr>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="body collapse in" id="div1">
+								<a href="#" class="btn btn-success">Salvar</a> <a href="#"
+									class="btn btn-danger">Descartar</a>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+				</div>
+
+
+			</div>
+			<!-- /#page-content-wrapper -->
+		</div>
+<!-- /#wrapper -->
+	</div>
+
+		<!-- jQuery -->
+		<script src="../bootstrap/js/jquery.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		
+		<script src="../essets/js/scripts.js"></script>
+
+		<!-- Menu Toggle Script -->
+		<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</body>
+</html>

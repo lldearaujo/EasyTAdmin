@@ -15,48 +15,24 @@ if ($resultado_id) {
     //Recupera em formato de ARRAY o retorno da pesquisa do banco de dados
     while ($linha = mysqli_fetch_array($resultado_id, MYSQLI_ASSOC))
     {
-        $dados_usuario[] = $linha;
+        $dados_usuario['nome'] = $linha;
     }
-    //foreach ($dados_usuario as $usuario) {
-    //    $_echo ($usuario['nome']);
-    //}
+    foreach ($dados_usuario as $usuario) {
+       $_echo ($usuario['nome']);
+    }
     
     
 } else {
     echo 'Erro na execução da consulta!';
 }
 
-class Permissao{
+function permissao(){
     //Atributos
-    var $nome = array("Admin","Andrea");
-    var $descricao;
-    var $abas;
-    
-    
-    //métodos    
-    public function getNome(){
-        return $this->nome;
-    }
-    public function getDescricao()
-    {
-        return $this->descricao;
-    }
-    public function getAbas()
-    {
-        return $this->abas;
-    }
-    public function setNome($nome_escolhido){
-        $this->nome = $nome_escolhido;
-    }    
-    public function setDescricao($descricao)
-    {
-        $this->descricao = $descricao;
-    }
-    public function setAbas($abas)
-    {
-        $this->abas = $abas;
+    foreach ($dados_usuario as $usuario) {
+        $nome[] = $dados_usuario['nome'];
     }
     
+    return $nome;    
 }
 
 

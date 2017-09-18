@@ -1,18 +1,16 @@
 <?php
 echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?" . ">";
 $erro_usuario = isset($_GET['erro_usuario']) ? $_GET['erro_usuario'] : 0;
-require_once ('../controller/permissao.class.php');
-$permissao = new Permissao();
-$permissao->getNome();
-
-
+require_once ('../model/db.class.php');
+$db = new db(); 
+$con = $db->conecta_mysql();
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-<meta charset=iso-8859-1>
+<meta charset="utf-8">
 <!--IE Compatibility modes-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--Mobile first-->
@@ -85,10 +83,10 @@ $permissao->getNome();
 						<input type="text" id="username" name="username"
 							placeholder="Usuário" class="form-control">
 						<?php
-    if ($erro_usuario) {
-        echo '<font style="color:#E74C3C">Usuário já existe</font';
-    }
-    ?>
+                        if ($erro_usuario) {
+                        echo '<font style="color:#E74C3C">Usuário já existe</font';
+                        }
+                        ?>
 					</div>
 
 					<div class="form-group">
@@ -96,35 +94,47 @@ $permissao->getNome();
 							placeholder="Senha" class="form-control">
 					</div>
 
+					//CheckBox para escolha da permissão do usuário
 					<div class="form-group">
-
 						<label class="control-label col-lg-3">Selecione as permissões do
 							usuário</label>
 						<div class="form-group">
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<select id="select_permissao" name="select_permissao"
 									class="form-control">
-									
-									<option value="<?php echo serialize($permissao->getNome());?>"></option>
+									<option>Selecione o nível de acesso</option>
+									<?php 
+                                        $sql = "SELECT * FROM permissoes";
+                                        $resultado_permissoes = mysqli_query($con, $sql);
+                                        while ($row_permissoes = mysqli_fetch_assoc($resultado_permissoes)){?>
+                                        <option value="<?php 
+                                                        echo $row_permissoes['idpermissao'];
+                                                       ?>" name="select_permissao" >
+                                    <?php echo $row_permissoes['nome'];?>
+                                     	</option>
+                                    <?php 
+                                        }
+									?>
 								</select>
 							</div>
 						</div>
 
 					</div>
+					
 					<div class="form-group row">
 						<div class="col-sm-3">
 							<button type="submit" id="btn_salvar"
 								class="btn btn-primary form-control">Salvar</button>
 						</div>
+						
 					</div>
 				</form>
-
 				<div>
-					<button onclick="myFunction()" name="btn_add" id="btn_add"
+					<button onclick="addPermissao()" name="btn_add" id="btn_add"
 						class="btn">
 						<i class="glyphicon glyphicon-plus"></i>
 					</button>
-					<button id="btn_edt" class="btn">
+					<button onclick="edtPermissao()" id="btn_edt" class="btn">
 						<i class="glyphicon glyphicon-wrench"></i>
 					</button>
 				</div>
@@ -144,9 +154,7 @@ $permissao->getNome();
         $(document).ready(function(){
 			//verificar se os campos de nome, usuário e senha foram devidamente preenchidos
 			$('#btn_salvar').click(function(){
-
 				var campo_vazio = false;
-
 				//Função seletora
 				if($('#nome').val() == ''){
 					$('#nome').css({'border-color': '#E74C3C'});
@@ -170,12 +178,12 @@ $permissao->getNome();
 				if(campo_vazio) return false;				
 			});
 		})(jQuery);
-
-
-        function myFunction() {
+        function addPermissao() {
             var myWindow = window.open("cadastra_permissoes.php", "myWindow", "width=490,height=480");
         }
-        
+		function edtPermissao($retorno) {
+            var myWindow = window.open("cadastra_permissoes.php?edt=1&", "myWindow", "width=490,height=480");
+        }        
     </script>
 
 </body>

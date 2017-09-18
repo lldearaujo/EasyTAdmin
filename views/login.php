@@ -1,62 +1,48 @@
+<!DOCTYPE html>
 <?php
 // IF tenário para tratar dos erros da página.
 // Se a condição for verdadeira, logo apos o ? ele executa a instrução a esquerda dos : (dois pontos) se for falsa a direita.
 $erro = isset($_GET['erro']) ? $_GET['erro'] : 0;
 ?>
-
-<!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-
-<meta charset="iso-8859-1">
-<!--IE Compatibility modes-->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--Mobile first-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Login</title>
-
-<!-- jquery - link cdn -->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-<meta name="description"
-	content="Free Admin Template Based On Twitter Bootstrap 3.x">
-<meta name="author" content="">
-
-<meta name="msapplication-TileColor" content="#5bc0de" />
-<meta name="msapplication-TileImage"
-	content="../bootstrap/img/metis-tile.png" />
-
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="../bootstrap/lib/bootstrap/css/bootstrap.css">
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="../bootstrap/lib/font-awesome/css/font-awesome.css">
-
-<!-- Metis core stylesheet -->
-<link rel="stylesheet" href="../bootstrap/css/main.css">
-
-<!-- metisMenu stylesheet -->
-<link rel="stylesheet" href="../bootstrap/lib/metismenu/metisMenu.css">
-
-<!-- onoffcanvas stylesheet -->
-<link rel="stylesheet"
-	href="../bootstrap/lib/onoffcanvas/onoffcanvas.css">
-
-<!-- animate.css stylesheet -->
-<link rel="stylesheet" href="../bootstrap/lib/animate.css/animate.css">
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
+	<head>
+        <meta charset="iso-8859-1">
+        <!--IE Compatibility modes-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--Mobile first-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Login</title>        
+        <!-- jquery - link cdn -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>        
+        <meta name="description"
+        	content="Free Admin Template Based On Twitter Bootstrap 3.x">
+        <meta name="author" content="">        
+        <meta name="msapplication-TileColor" content="#5bc0de" />
+        <meta name="msapplication-TileImage"
+        	content="../bootstrap/img/metis-tile.png" />        
+        <!-- Bootstrap -->
+        <link rel="stylesheet"
+        	href="../bootstrap/lib/bootstrap/css/bootstrap.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+        	href="../bootstrap/lib/font-awesome/css/font-awesome.css">
+        <!-- Metis core stylesheet -->
+        <link rel="stylesheet" href="../bootstrap/css/main.css">
+        <!-- metisMenu stylesheet -->
+        <link rel="stylesheet" href="../bootstrap/lib/metismenu/metisMenu.css">
+        <!-- onoffcanvas stylesheet -->
+        <link rel="stylesheet"
+        	href="../bootstrap/lib/onoffcanvas/onoffcanvas.css">
+        <!-- animate.css stylesheet -->
+        <link rel="stylesheet" href="../bootstrap/lib/animate.css/animate.css">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+	</head>
 
 <body class="login">
 

@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <?php
+    // IF tenário para tratar dos erros da página.
+    // Se a condição for verdadeira, logo apos o ? ele executa a instrução a esquerda dos : (dois pontos) se for falsa a direita.
+    // Verifica se o existe condições para o carregamento
+    $edt = isset($_GET['edt']) ? $_GET['edt'] : 0;
+    //Vefirica se os checkbox já estão marcados
     $selecao = array(); 
-    function verifica($valor, $array){
+    function verifica($valor, $array)
+    {
         if(in_array($valor, $array))
             echo "checked='checked'";
     }
-
+    
+    
+    
+    
+    
+    
+    
 ?>
 <html lang="pt-br">
 
@@ -82,36 +94,41 @@
 
 					<div class="form-group">
 						<div class="col-lg-8">
-							<h5>Marque as abas para permitir o acesso:</h5>
+							<h5>Marque as abas que dejesa permitir o acesso:</h5>
 							<div class="checkbox">
 								<label> <input class="uniform" type="checkbox" value="1"
-									name="permissoes[]" <?php verifica("1", $selecao)?>> Dashboard
+									name="abas[]" <?php verifica("1", $selecao)?>> Dashboard
 								</label>
 							</div>
 							<div class="checkbox">
 								<label> <input class="uniform" type="checkbox" value="2"
-									name="permissoes[]" <?php verifica("2", $selecao)?>> Tomadas
+									name="abas[]" <?php verifica("2", $selecao)?>> Tomadas
 								</label>
 							</div>
 							<div class="checkbox">
 								<label> <input class="uniform" type="checkbox" value="3"
-									name="permissoes[]" <?php verifica("3", $selecao)?>> Agenda
+									name="abas[]" <?php verifica("3", $selecao)?>> Agenda
 								</label>
 							</div>
 							<div class="checkbox">
 								<label> <input class="uniform" type="checkbox" value="4"
-									name="permissoes[]" <?php verifica("4", $selecao)?>> Relatórios
+									name="abas[]" <?php verifica("4", $selecao)?>> Relatórios
 								</label>
 							</div>
 							<div class="checkbox">
 								<label> <input class="uniform" type="checkbox" value="5"
-									name="permissoes[]" <?php verifica("5", $selecao)?>> Configurações
+									name="abas[]" <?php verifica("5", $selecao)?>> Configurações
 								</label>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-3">
+							<?php
+                            if ($edt == 1) {
+                                echo '<font color="#E74C3C">Editar Permissão</font>';
+                                }
+                            ?>
 							<button type="submit" class="btn btn-primary form-control">Salvar</button>
 						</div>
 					</div>
@@ -124,6 +141,11 @@
 
 
 	</div>
+	
+	<script type="text/javascript">
+
+	</script>
+	
 
 </body>
 

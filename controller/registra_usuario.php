@@ -4,6 +4,7 @@ require_once ('../model/db.class.php');
 $nome = $_POST['nome'];
 $username = $_POST['username'];
 $password = md5($_POST['password']); // Recebe informação de senha e criptografa
+$idpermissao = $_POST['select_permissao'];
  
 
 $objDb = new db();
@@ -34,7 +35,7 @@ if($usuario_existe){
     die();
 }
 
-$sql = "INSERT INTO `usuarios`(nome, usuario, senha) VALUES ('$nome','$username','$password')";
+$sql = "INSERT INTO `usuarios`(nome, usuario, senha, idpermissao) VALUES ('$nome','$username','$password','$idpermissao')";
 
 // executar a query
 if (mysqli_query($link, $sql)) {

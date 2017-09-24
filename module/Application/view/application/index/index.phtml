@@ -1,0 +1,187 @@
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                </div>
+            </div>
+        </div>
+        <div id="dashboard" class="col-xs-12">
+            <div class="container-fluid ">
+                <div class="row">
+                    <!-- Coluna 1 do corpo-->
+                    <div class="col-xs-4">
+                        <h2>Status</h2>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>Tensão de Entrada</td>
+                                    <td>220v</td>
+                                </tr>
+                                <tr>
+                                    <td>Temperatura CPU</td>
+                                    <td>75º</td>
+                                </tr>
+                                <tr>
+                                    <td>Coneção WEB</td>
+                                    <td><span class="verde">OK</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Servidor WEB</td>
+                                    <td><span class="vermelho">OFF</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sevidor SSH</td>
+                                    <td><span class="verde">OK</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Coluna 2 do corpo-->
+                    <div class="row col-xs-8">
+                        <div id="tomadas" class="col-sm-push-8">
+
+                            <h3>Saídas</h3>
+                            <div class="btn">
+                                <a href="../controller/rele.php?rele_on">
+                                    <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                                </a>
+                            </div>
+                            <div class="btn">
+                                <a href="../controller/rele.php?rele_off">
+                                    <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                                </a>
+                            </div>
+                            <div class="btn">
+                                <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                            </div>
+                            <div class="btn">
+                                <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                            </div>
+                            <div class="btn">
+                                <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                            </div>
+                            <div class="btn">
+                                <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                            </div>
+                            <div class="btn">
+                                <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                            </div>
+                            <div class="btn">
+                                <img src="<?= $this->basePath('img/tomada_on.png') ?>" class="img-responsive" width="128px"/>
+                            </div>
+                        </div>
+
+                        <div id="agendamentos" class="col-xs-4">
+                            <h3>Agendamentos</h3>
+
+                            <div class="col-xs-4">
+                                <div class="span8">
+                                    <table class="table-condensed table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th class="entered-text" colspan="7"><a class="btn"><i
+                                                            class="glyphicon glyphicon-arrow-left"></i></a> <a class="btn">February
+                                                    2012</a> <a class="btn"><i class="glyphicon glyphicon-arrow-right"></i></a>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>Dom</th>
+                                            <th>Seg</th>
+                                            <th>Ter</th>
+                                            <th>Qua</th>
+                                            <th>Qui</th>
+                                            <th>Sex</th>
+                                            <th>Sab</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="muted">29</td>
+                                            <td class="muted">30</td>
+                                            <td class="muted">31</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>6</td>
+                                            <td>7</td>
+                                            <td>8</td>
+                                            <td>9</td>
+                                            <td>10</td>
+                                            <td>11</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>14</td>
+                                            <td>15</td>
+                                            <td>16</td>
+                                            <td>17</td>
+                                            <td>18</td>
+                                        </tr>
+                                        <tr>
+                                            <td>19</td>
+                                            <td><strong>20</strong></td>
+                                            <td>21</td>
+                                            <td>22</td>
+                                            <td>23</td>
+                                            <td>24</td>
+                                            <td>25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>26</td>
+                                            <td>27</td>
+                                            <td>28</td>
+                                            <td>29</td>
+                                            <td class="muted">1</td>
+                                            <td class="muted">2</td>
+                                            <td class="muted">3</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class"col-xs-4">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Nome</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>22/02/2012</td>
+                                        <td>Ligar Switche HP</td>
+                                        <td>Liga switche responsável pela rede corporativa.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mary</td>
+                                        <td>Moe</td>
+                                        <td>mary@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>July</td>
+                                        <td>Dooley</td>
+                                        <td>july@example.com</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>

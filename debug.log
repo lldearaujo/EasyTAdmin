@@ -1,9 +1,0 @@
-[0815/174257.214:ERROR:settings.cc(266)] Settings version is not 1
-[0815/174335.699:ERROR:settings.cc(266)] Settings version is not 1
-[0903/154946.389:ERROR:main_dll_loader_win.cc(136)] Failed to load Chrome DLL from C:\Program Files (x86)\Bookness\Application\58.0.3029.81\chrome.dll: Não foi possível encontrar o módulo especificado. (0x7E)
-[0904/121031.245:ERROR:main_dll_loader_win.cc(136)] Failed to load Chrome DLL from C:\Program Files (x86)\Bookness\Application\58.0.3029.81\chrome.dll: Não foi possível encontrar o módulo especificado. (0x7E)
-[0905/222410.506:ERROR:settings.cc(266)] Settings version is not 1
-[0905/222410.511:ERROR:main_dll_loader_win.cc(136)] Failed to load Chrome DLL from C:\Program Files (x86)\Bookness\Application\58.0.3029.81\chrome.dll: Não foi possível encontrar o módulo especificado. (0x7E)
-[0912/154015.599:ERROR:settings.cc(266)] Settings version is not 1
-[0912/190603.330:ERROR:settings.cc(266)] Settings version is not 1
-[0912/195330.616:ERROR:settings.cc(266)] Settings version is not 1

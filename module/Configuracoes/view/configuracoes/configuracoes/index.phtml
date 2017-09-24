@@ -1,3 +1,4 @@
+<?php $this->headTitle("Configurações"); ?>
 <div class="container row">
     <div class="col-lg-8">
         <div class="box dark">
@@ -131,18 +132,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Leonardo Lins</td>
-                                        <td>lldearaujo</td>
-                                        <td>Admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Roney Cordeiro</td>
-                                        <td>Cordeiro</td>
-                                        <td>Gerente</td>
-                                    </tr>
+                                    <?php foreach ($usuarios as $usuario): ?>
+                                        <tr>
+                                            <td><?=$this->escapeHtml($usuario->id); ?></td>
+                                            <td><?=$this->escapeHtml($usuario->nome); ?></td>
+                                            <td><?=$this->escapeHtml($usuario->usuario); ?></td>
+                                            <td><?=$this->escapeHtml($usuario->idpermissao); ?></td>
+                                        </tr>
+                                    <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>

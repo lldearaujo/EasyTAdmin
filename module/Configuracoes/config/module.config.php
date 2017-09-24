@@ -1,12 +1,34 @@
 <?php
-return array(
-    'controllers' => array(
-        'invokables' => array(
-            'Configuracoes\Controller\Configuracoes' => 'Configuracoes\Controller\ConfiguracoesController',
-        ),
-    ),
-    'router' => array(
-        'routes' => array(
+return [
+    'controllers' => [
+        'factories' => [
+           # Configuracoes\Controller\ConfiguracoesController::class=>\Zend\ServiceManager\Factory\InvokableFactory::class
+
+        ]
+    ],
+      #  'factories' => array(
+            #'Configuracoes\Controller\Configuracoes' => 'Configuracoes\Controller\ConfiguracoesController',
+     #   ),
+    'router' => [
+        'routes' => [
+            'configuracoes' => [
+                'type' => 'literal',
+                'options' => [
+                    'route' => '/configuracoes',
+                    'defaults' => [
+                        'controller' => Configuracoes\Controller\ConfiguracoesController::class,
+                        'action'=> 'index'
+                    ]
+                ]
+            ]
+        ]
+
+
+
+
+
+
+        /*'routes' => array(
             'configuracoes' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -40,11 +62,16 @@ return array(
                     ),
                 ),
             ),
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
-            'Configuracoes' => __DIR__ . '/../view',
-        ),
-    ),
-);
+        ),*/
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
+            'configuracoes'=>__DIR__."/../view"
+        ]
+
+    ]
+     //   'template_path_stack' => array(
+     //       'Configuracoes' => __DIR__ . '/../view',
+     //   ),
+    //),
+];

@@ -9,19 +9,28 @@
 
 namespace Configuracoes\Controller;
 
+use Configuracoes\Model\UsuarioTable;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 class ConfiguracoesController extends AbstractActionController
 {
-    public function indexAction()
+    /**
+     * @var UsuarioTable
+     */
+    public function __construct(UsuarioTable $table)
     {
-        return array();
+        $this->table = $table;
     }
 
-    public function fooAction()
+    public function indexAction()
     {
-        // This shows the :controller and :action parameters in default route
-        // are working when you browse to /configuracoes/configuracoes/foo
-        return array();
+        $usuarioTable = $this->table;
+
+        return new ViewModel([
+           'usuarios'=>$usuarioTable->fetchAll()
+        ]);
+
+
     }
 }

@@ -9,11 +9,16 @@
 
 namespace Configuracoes;
 
+use Configuracoes\Controller\ConfiguracoesController;
+use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-class Module implements AutoloaderProviderInterface
+class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 {
     public function getAutoloaderConfig()
     {
@@ -42,5 +47,37 @@ class Module implements AutoloaderProviderInterface
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+    }
+
+    public function getServiceConfig()
+    {
+        return
+        [
+            'factories'=> [
+                Model\UsuarioTable::class => function($container){
+                    $tableGateway = $container->get(Model\UsuarioTableGateway::class);
+                    return new Model\UsuarioTable($tableGateway);
+                },
+                Model\UsuarioTableGateway::class=> function($container){
+                    $dbAdapter = $container->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Model\Usuario());
+                    return new TableGateway('usuarios', $dbAdapter, null, $resultSetPrototype);
+                }
+            ]
+        ];
+    }
+
+    public function getControllerConfig()
+    {
+        return [
+            'factories'=>[
+                ConfiguracoesController::class => function($container){
+                    return new ConfiguracoesController(
+                        $container->get(Model\UsuarioTable::class)
+                    );
+                }
+            ]
+        ];
     }
 }

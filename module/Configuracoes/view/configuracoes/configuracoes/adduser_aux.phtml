@@ -1,0 +1,65 @@
+<div class="container">
+
+    <div class="page-header">
+        <h1>Cadastro de Usuários</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>Preencha todos os campos a seguir:</h4>
+                <div class="form-group">
+                   Nome <?= $this->formRow($form->get('nome')); ?>
+                </div>
+
+                <div class="form-group">
+                    Usuário <?= $this->formRow($form->get('usuario')); ?>
+                </div>
+
+                <div class="form-group">
+                    Senha <?= $this->formRow($form->get('senha')); ?>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3">Selecione as permissões do
+                        usuário</label>
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <select id="select_permissao" name="select_permissao"
+                                    class="form-control">
+                                <option>Selecione o nível de acesso</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <?= $this->formSubmit($form->get('submit')); ?>
+                    </div>
+
+                </div>
+            <div>
+                <button onclick="addPermissao()" name="btn_add" id="btn_add"
+                        class="btn">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+                <button onclick="edtPermissao()" id="btn_edt" class="btn">
+                    <i class="glyphicon glyphicon-wrench"></i>
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<Script language=javascript type="text/javascript">
+    function verificaCampo()
+    {
+        varWindow = window.open ('configuracoes/adduser', "", "width=450,height=600")
+    }
+
+</Script>

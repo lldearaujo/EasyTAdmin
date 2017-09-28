@@ -1,0 +1,56 @@
+<?php
+$usuario = 'Add novo usuario';
+$this->headTitle($usuario);
+?>
+    <h1><?= $this->escapeHtml($usuario) ?></h1>
+<?php
+$nome = $form->get('nome');
+$nome->setAttribute('class', 'form-control');
+$nome->setAttribute('placeholder', 'Nome');
+
+$usuario = $form->get('usuario');
+$usuario->setAttribute('class', 'form-control');
+$usuario->setAttribute('placeholder', 'Usuario');
+
+$senha = $form->get('senha');
+$senha->setAttribute('class', 'form-control');
+$senha->setAttribute('placeholder', 'Senha');
+
+
+$idpermissao = $form->get('idpermissao');
+$idpermissao->setAttribute('class', 'form-control');
+$idpermissao->setAttribute('placeholder', 'Idpermissao');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('configuracoes', ['action' => 'adduser']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+    <div class="form-group">
+        <?= $this->formElement($nome) ?>
+        <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formElement($usuario) ?>
+        <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formElement($senha) ?>
+        <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formElement($idpermissao) ?>
+        <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+    </div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

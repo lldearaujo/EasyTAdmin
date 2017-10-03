@@ -2,30 +2,24 @@
 /**
  * Zend Framework (http://framework.zend.com/)
  *
- * @link      http://github.com/zendframework/Configuracoes for the canonical source repository
+ * @link      http://github.com/zendframework/User for the canonical source repository
  * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Configuracoes;
+namespace User;
 
-use Configuracoes\Controller\ConfiguracoesController;
-use Configuracoes\Controller\Factory\ConfiguracoesControllerFactory;
-use Configuracoes\Form\Factory\UsuarioFormFactory;
-use Configuracoes\Form\UsuarioForm;
-use Configuracoes\Model\Factory\UsuarioTableFactory;
-use Configuracoes\Model\Factory\UsuarioTableGatewayFactory;
-use Zend\Db\Adapter\AdapterInterface;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
+use User\Controller\AuthController;
+use User\Controller\Factory\AuthControllerFactory;
+use User\Form\LoginForm;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ControllerProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
-class Module implements AutoloaderProviderInterface, ConfigProviderInterface, ServiceProviderInterface, ControllerProviderInterface
+class Module implements AutoloaderProviderInterface, ServiceProviderInterface, ControllerProviderInterface
 {
     public function getAutoloaderConfig()
     {
@@ -56,24 +50,20 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Se
         $moduleRouteListener->attach($eventManager);
     }
 
-    public function getServiceConfig()
+    public function getControllerConfig()
     {
-        return
-        [
-            'factories'=> [
-                Model\UsuarioTable::class => UsuarioTableFactory::class,
-                Model\UsuarioTableGateway::class=> UsuarioTableGatewayFactory::class,
-                UsuarioForm::class => UsuarioFormFactory::class
-
+        return [
+            'factories' => [
+                AuthController::class => AuthControllerFactory::class
             ]
         ];
     }
 
-    public function getControllerConfig()
+    public function getServiceConfig()
     {
         return [
-            'factories'=>[
-                ConfiguracoesController::class => ConfiguracoesControllerFactory::class
+            'factories' => [
+
             ]
         ];
     }

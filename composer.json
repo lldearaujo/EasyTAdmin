@@ -25,7 +25,8 @@
             "Tomadas\\": "module/tomadas/src/",
             "Agenda\\": "module/Agenda/src/",
             "Relatorios\\": "module/Relatorios/src/",
-            "Configuracoes\\": "module/Configuracoes/src/"
+            "Configuracoes\\": "module/Configuracoes/src/",
+            "User\\": "module/User/src/"
         }
     },
     "autoload-dev": {

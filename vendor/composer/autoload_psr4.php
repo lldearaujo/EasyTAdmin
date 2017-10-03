@@ -30,9 +30,13 @@ return array(
     'Zend\\Code\\' => array($vendorDir . '/zendframework/zend-code/src'),
     'ZendDeveloperTools\\' => array($vendorDir . '/zendframework/zend-developer-tools/src'),
     'ZF\\DevelopmentMode\\' => array($vendorDir . '/zfcampus/zf-development-mode/src'),
+    'User\\' => array($baseDir . '/module/User/src'),
+    'Tomadas\\' => array($baseDir . '/module/tomadas/src'),
+    'Relatorios\\' => array($baseDir . '/module/Relatorios/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
     'Configuracoes\\' => array($baseDir . '/module/Configuracoes/src'),
     'Application\\' => array($baseDir . '/module/Application/src'),
     'ApplicationTest\\' => array($baseDir . '/module/Application/test'),
+    'Agenda\\' => array($baseDir . '/module/Agenda/src'),
 );

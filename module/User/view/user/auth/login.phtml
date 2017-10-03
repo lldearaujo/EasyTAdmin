@@ -1,0 +1,45 @@
+<?php
+$login = 'Login EasyT';
+$this->headTitle($login);
+?>
+
+<h1><?= $this->escapeHtml($login) ?></h1>
+
+<?php
+$usuario = $form->get('usuario');
+$usuario->setAttribute('class', 'form-control')
+    ->setLabelAttributes(['class' => 'control-label']);
+#$usuario->setAttribute('placeholder', 'Usuario');
+
+$senha = $form->get('senha');
+$senha->setAttribute('class', 'form-control')
+    ->setLabelAttributes(['class' => 'control-label']);
+#$senha->setAttribute('placeholder', 'Senha');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('login'));
+$form->prepare();
+?>
+
+<div class="col-md-6">
+    <?php echo $this->form()->openTag($form); ?>
+
+
+    <div class="form-group">
+        <?= $this->formElement($usuario) ?>
+        <?= $this->formElementErrors()->render($usuario, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formElement($senha) ?>
+        <?= $this->formElementErrors()->render($senha, ['class' => 'help-block']) ?>
+    </div>
+
+
+    <?php
+    echo $this->formSubmit($submit);
+    echo $this->form()->closeTag();
+    ?>
+</div>

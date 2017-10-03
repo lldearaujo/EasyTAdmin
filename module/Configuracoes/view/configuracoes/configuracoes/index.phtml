@@ -209,16 +209,25 @@
     }
 
     function edtPopup() {
-        varWindow = window.open('configuracoes/edtuser/'+value, "", "width=450,height=650");
+        if(value==null){
+            alert('Selecione o item antes de editar!!');
+        } else {
+            varWindow = window.open('configuracoes/edtuser/'+value, "", "width=450,height=650");
+        }
     }
 
     function delUser() {
-        window.location="configuracoes/deleteUser/"+value;
-        alert('Dado deletado com sucesso!');
+
+        if(value==null){
+            alert('Selecione o item antes de excluir!!');
+        } else {
+            decisao = confirm("Tem certeza que deseja excluir o usuário?");
+            if(decisao) {
+                window.location="configuracoes/deleteUser/"+value;
+                alert('Dado deletado com sucesso!');
+            } else {
+            }
+        }
     }
-
-
-
-
 
 </Script>

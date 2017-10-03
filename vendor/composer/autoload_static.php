@@ -38,6 +38,18 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
             'ZendDeveloperTools\\' => 19,
             'ZF\\DevelopmentMode\\' => 19,
         ),
+        'U' => 
+        array (
+            'User\\' => 5,
+        ),
+        'T' => 
+        array (
+            'Tomadas\\' => 8,
+        ),
+        'R' => 
+        array (
+            'Relatorios\\' => 11,
+        ),
         'P' => 
         array (
             'Psr\\Container\\' => 14,
@@ -54,6 +66,7 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
         array (
             'Application\\' => 12,
             'ApplicationTest\\' => 16,
+            'Agenda\\' => 7,
         ),
     );
 
@@ -154,6 +167,18 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
         array (
             0 => __DIR__ . '/..' . '/zfcampus/zf-development-mode/src',
         ),
+        'User\\' => 
+        array (
+            0 => __DIR__ . '/../..',
+        ),
+        'Tomadas\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/tomadas/src',
+        ),
+        'Relatorios\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Relatorios/src',
+        ),
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
@@ -173,6 +198,10 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
         'ApplicationTest\\' => 
         array (
             0 => __DIR__ . '/../..' . '/module/Application/test',
+        ),
+        'Agenda\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Agenda/src',
         ),
     );
 

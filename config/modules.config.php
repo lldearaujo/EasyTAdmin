@@ -20,6 +20,7 @@ return [
     'Tomadas',
     'Agenda',
     'Relatorios',
-    'Configuracoes'
+    'Configuracoes',
+    'User',
     /* ... */
 ];

@@ -9,6 +9,8 @@
 
 namespace Configuracoes\Controller;
 
+use Configuracoes\InputFilter\UsuarioInputFilter;
+use Configuracoes\Model\Permissao;
 use Configuracoes\Form\UsuarioForm;
 use Configuracoes\Model\Usuario;
 use Configuracoes\Model\UsuarioTable;
@@ -20,54 +22,80 @@ class ConfiguracoesController extends AbstractActionController
     /**
      * @var UsuarioTable
      */
-    public function __construct(UsuarioTable $table)
+    public function __construct(UsuarioTable $tableUser, UsuarioForm $form)
     {
-        $this->table = $table;
+        $this->table = $tableUser;
+        $this->form = $form;
+
     }
+
 
     public function indexAction()
     {
         $usuarioTable = $this->table;
 
         return new ViewModel([
-           'usuarios'=>$usuarioTable->fetchAll()
+            'usuarios' => $usuarioTable->fetchAll(),
         ]);
 
     }
 
-    //Método do controller que chama a view AddUser e passa os devidos comando e valores.
+    //Método do controller para adicionar e chamar o add Usuários
     public function adduserAction()
     {
-        $form = new UsuarioForm();
+        $form = $this->form;
         $form->get('submit')->setValue('Add');
-
         $request = $this->getRequest();
-
-        if(!$request->isPost()){
-            return['form' => $form];
-        }
-
-        $usuario = new Usuario();
-        $form->setInputFilter($usuario->getInputFilter());
-        $form->setData($request->getPost());
-
-
-        if (!$form->isValid()){
+        if (!$request->isPost()) {
             return ['form' => $form];
         }
+        $form->setData($request->getPost());
 
+        if (!$form->isValid()) {
+            return ['form' => $form];
+        }
+        $usuario = new Usuario();
+        //$form->setInputFilter($usuario->getInputFilter());
+        //$form->setData($request->getPost());
         $usuario->exchangeArray($form->getData());
         $this->table->saveUser($usuario);
         return $this->redirect()->toRoute('configuracoes');
+    }
+
+    //Método para adicionar permissão
+    public function addpermissaoAction()
+    {
+
+        $form = $this->form;
+        $form->get('submit')->setValue('Adicionar');
+
+        $request = $this->getRequest();
+
+        if (!$request->isPost()) {
+            return ['form' => $form];
+        }
+
+        $permissao = new Permissao();
+        $form->setInputFilter($permissao->getInputFilter());
+        $form->setData($request->getPost());
+
+        if (!$form->isValid()) {
+            return ['form' => $form];
+        }
+
+        $permissao->exchangeArray($form->getData());
+        $this->tableper->savePermissao($permissao);
+        return $this->redirect()->toRoute('configuracoes');
+
     }
 
 
     //Método do controller que chama a view EdtUser e passa os devidos comando e valores.
     public function edtuserAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
+        $id = (int)$this->params()->fromRoute('id', 0);
 
-        if(0 === $id){
+        if (0 === $id) {
             return $this->redirect()->toRoute('configuracoes', ['action' => 'adduser']);
         }
 
@@ -78,7 +106,7 @@ class ConfiguracoesController extends AbstractActionController
         try {
             $usuario = $this->table->getUsuario($id);
         } catch (\Exception $e) {
-            return $this->redirect()->toRoute('configuracoes',['action'=> 'index']);
+            return $this->redirect()->toRoute('configuracoes', ['action' => 'index']);
         }
 
         $form = new UsuarioForm();
@@ -88,14 +116,14 @@ class ConfiguracoesController extends AbstractActionController
         $request = $this->getRequest();
         $viewData = ['id' => $id, 'form' => $form];
 
-        if (!$request->isPost()){
+        if (!$request->isPost()) {
             return $viewData;
         }
 
         $form->setInputFilter($usuario->getInputFilter());
         $form->setData($request->getPost());
 
-        if (!$form->isValid()){
+        if (!$form->isValid()) {
             return $viewData;
         }
 
@@ -106,8 +134,8 @@ class ConfiguracoesController extends AbstractActionController
 
     public function deleteUserAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if(!$id){
+        $id = (int)$this->params()->fromRoute('id', 0);
+        if (!$id) {
             return $this->redirect()->toRoute('configuracoes');
         }
         $this->table->deleteUser($id);

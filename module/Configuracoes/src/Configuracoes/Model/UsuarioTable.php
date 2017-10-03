@@ -41,9 +41,12 @@ class UsuarioTable
             $this->tableGateway->insert($data);
             return;
         }
+
+
+
         if (! $this->getUsuario($id)) {
             throw new RuntimeException(sprintf(
-                'Não é possível atualizar o álbum com o identificador, %d não existe.',
+                'Não é possível atualizar o Usuario com o identificador, %d não existe.',
                 $id
             ));
         }

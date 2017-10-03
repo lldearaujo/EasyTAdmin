@@ -10,6 +10,7 @@ namespace Configuracoes\Model;
 
 
 
+use Configuracoes\InputFilter\UsuarioInputFilter;
 use Zend\Filter\StringTrim;
 use Zend\InputFilter\InputFilter;
 use Zend\Filter\StripTags;
@@ -17,6 +18,7 @@ use Zend\Filter\ToInt;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\Mvc\Exception\DomainException;
+use Zend\Validator\NotEmpty;
 use Zend\Validator\StringLength;
 
 class Usuario implements InputFilterAwareInterface
@@ -37,73 +39,6 @@ class Usuario implements InputFilterAwareInterface
         $this-> idpermissao = (!empty($data['idpermissao'])) ? $data['idpermissao'] : null;
     }
 
-    public function setInputFilter(InputFilterInterface $inputFilter){
-        throw new DomainException(sprintf(
-            '%s does not allow injection of an alternate input filter',
-            __CLASS__
-        ));
-    }
-
-    public function getInputFilter()
-    {
-        if ($this->inputFilter){
-            return $this->inputFilter;
-        }
-
-        $inputFilter = new InputFilter();
-
-        $inputFilter->add([
-            'name' => 'nome',
-            'required' => true,
-            'filters' => [
-                ['name' => StripTags::class],
-                ['name' => StringTrim::class],
-            ],
-            'validators' => [
-                [
-                    'name' => StringLength::class,
-                    'options' => [
-                        'enconding' => 'UTF-8',
-                        'min' => 1,
-                        'max' => 100,
-                    ],
-                ],
-            ],
-        ]);
-
-        $inputFilter->add([
-            'name' => 'usuario',
-            'required' => true,
-            'filters' => [
-                ['name' => StripTags::class],
-                ['name' => StringTrim::class],
-            ],
-            'validators' => [
-                [
-                    'name' => StringLength::class,
-                    'options' => [
-                        'enconding' => 'UTF-8',
-                        'min' => 1,
-                        'max' => 32,
-                    ],
-                ],
-            ],
-        ]);
-
-        $inputFilter->add([
-            'name' => 'idpermissao',
-            'required' => true,
-            'filters' => [
-                ['name' => ToInt::class],
-
-
-            ],
-        ]);
-
-        $this->inputFilter = $inputFilter;
-        return $this->inputFilter;
-    }
-
     public function getArrayCopy()
     {
         return
@@ -113,6 +48,26 @@ class Usuario implements InputFilterAwareInterface
             'usuario' => $this->usuario,
             'idpermissao' => $this->idpermissao
         ];
+    }
+
+    public function setInputFilter(InputFilterInterface $inputFilter){
+        throw new DomainException(sprintf(
+            '%s does not allow injection of an alternate input filter',
+            __CLASS__
+        ));
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->inputFilter)
+        {
+            return $this->inputFilter;
+        }
+
+        $inputFilter = new UsuarioInputFilter();
+
+        $this->inputFilter = $inputFilter;
+        return $this->inputFilter;
     }
 
 

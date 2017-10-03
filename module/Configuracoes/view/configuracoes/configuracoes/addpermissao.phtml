@@ -1,0 +1,46 @@
+<?php
+$permissao = 'Add nova permissao';
+$this->headTitle($permissao);
+?>
+    <h1><?= $this->escapeHtml($permissao) ?></h1>
+<?php
+$nome = $form->get('nome');
+$nome->setAttribute('class', 'form-control');
+$nome->setAttribute('placeholder', 'Nome');
+
+$descricao = $form->get('descricao');
+$descricao->setAttribute('class', 'form-control');
+$descricao->setAttribute('placeholder', 'Descrição');
+
+$abas = $form->get('abas');
+$abas->setAttribute('class', 'form-control');
+$abas->setAttribute('placeholder', 'Abas');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->setAttribute('action', $this->url('configuracoes', ['action' => 'addpermissao']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+    <div class="form-group">
+        <?= $this->formElement($nome) ?>
+        <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formElement($descricao) ?>
+        <?= $this->formElementErrors()->render($descricao, ['class' => 'help-block']) ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formElement($abas) ?>
+        <?= $this->formElementErrors()->render($abas, ['class' => 'help-block']) ?>
+    </div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('idpermissao'));
+echo $this->form()->closeTag();

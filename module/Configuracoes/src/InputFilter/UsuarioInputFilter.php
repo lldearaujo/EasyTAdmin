@@ -7,7 +7,6 @@ use Zend\Filter\StripTags;
 use Zend\Filter\ToInt;
 use Zend\InputFilter\InputFilter;
 use Zend\Validator\NotEmpty;
-use Zend\Validator\StringLength;
 
 class UsuarioInputFilter extends InputFilter {
 
@@ -63,6 +62,26 @@ class UsuarioInputFilter extends InputFilter {
             ],
         ]);
 
+        $this->add([
+            'name' => 'senha',
+            'required' => true,
+            'filters' => [
+                ['name' => StripTags::class],
+                ['name' => StringTrim::class],
+            ],
+            'validators' => [
+                [
+                    'name' => NotEmpty::class,
+                    'options' => [
+                        'messages' => [
+                            NotEmpty::IS_EMPTY => 'O campo é requerido!'
+                        ],
+                        'min' => 1,
+                        'max' => 32,
+                    ],
+                ],
+            ],
+        ]);
 
         $this->add([
             'name' => 'idpermissao',

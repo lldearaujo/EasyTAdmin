@@ -10,29 +10,56 @@
 namespace User\Controller;
 
 use User\Form\LoginForm;
+use Zend\Authentication\AuthenticationServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 
 
 class AuthController extends AbstractActionController
 {
-    public function __construct(LoginForm $form)
+    /**
+     * @var AuthenticationServiceInterface
+     */
+    private $authService;
+
+    public function __construct(AuthenticationServiceInterface $authService)
     {
-        $this->form = $form;
+        $this->authService = $authService;
     }
 
 
     public function loginAction()
     {
+        $loginForm = new LoginForm();
+        $messageError = null;
+        if($this->getRequest()->isPost()){
+            $data = $this->getRequest()->getPost();
+            $loginForm->setData($data);
+            if($loginForm->isValid()){
+                $loginFormData = $loginForm->getData();
+                /** @var CallbackCheckAdapter $authAdapter */
+                $authAdapter = $this->authService->getAdapter();
+                $authAdapter->setIdentity($loginFormData['usuario']);
+                $authAdapter->setCredential($loginFormData['senha']);
 
-        $form = $this->form;
+                $result = $this->authService->authenticate();
+                if ($result->isValid()){
+                    return $this->redirect()->toRoute('home');
+                } else {
+                    $messageError = "Login Inválido, tente novamente.";
+                }
+            }
+        }
         return new ViewModel([
-            $form
+            'loginForm' => $loginForm,
+            'messageError' => $messageError
         ]);
     }
 
     public function logoutAction(){
-        return array();
+        $this->authService->clearIdentity();
+        return $this->redirect()->toRoute('login');
     }
 
 }

@@ -9,15 +9,17 @@
 
 namespace User;
 
+use User\InputFilter\LoginInputFilter;
 use User\Controller\AuthController;
 use User\Controller\Factory\AuthControllerFactory;
-use User\Form\LoginForm;
+use User\Service\Factory\AuthenticationServiceFactory;
+use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\AuthenticationServiceInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ControllerProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 class Module implements AutoloaderProviderInterface, ServiceProviderInterface, ControllerProviderInterface
 {
@@ -40,12 +42,24 @@ class Module implements AutoloaderProviderInterface, ServiceProviderInterface, C
     {
         return include __DIR__ . '/config/module.config.php';
     }
-
     public function onBootstrap(MvcEvent $e)
     {
-        // You may not need to do this if you're doing it elsewhere in your
-        // application
         $eventManager        = $e->getApplication()->getEventManager();
+        $container = $e->getApplication()->getServiceManager();
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH,
+            function (MvcEvent $e) use($container) {
+                $match = $e->getRouteMatch();
+
+                $authService = $container->get(AuthenticationServiceInterface::class);
+                $routeName = $match->getMatchedRouteName();
+                if($authService->hasIdentity()){
+                    return;
+                } elseif(strpos($routeName, 'admin')!== false) {
+                    $match->setParam('controller', AuthController::class)
+                        ->setParam('action', 'login');
+                }
+        },100);
+
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
@@ -62,9 +76,36 @@ class Module implements AutoloaderProviderInterface, ServiceProviderInterface, C
     public function getServiceConfig()
     {
         return [
+            'aliases' => [
+                AuthenticationService::class => AuthenticationServiceInterface::class
+            ],
             'factories' => [
+                AuthenticationServiceInterface::class => AuthenticationServiceFactory::class
 
             ]
         ];
     }
+
+    public function setInputFilter(InputFilterInterface $inputFilter){
+        throw new DomainException(sprintf(
+            '%s does not allow injection of an alternate input filter',
+            __CLASS__
+        ));
+    }
+
+    public function getInputFilter()
+    {
+        if ($this->inputFilter)
+        {
+            return $this->inputFilter;
+        }
+
+        $inputFilter = new LoginInputFilter();
+
+        $this->inputFilter = $inputFilter;
+        return $this->inputFilter;
+    }
+
+
+
 }

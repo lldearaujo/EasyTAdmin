@@ -3,7 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/module/Application/view/layout/layout.phtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/Configuracoes/src/Configuracoes/Controller/ConfiguracoesController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/module/Configuracoes/src/Model/Usuario.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/Configuracoes/view/configuracoes/configuracoes/index.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/index.php" charset="UTF-8" />
   </component>
 </project>

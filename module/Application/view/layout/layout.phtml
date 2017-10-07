@@ -1,59 +1,75 @@
 <?= $this->doctype() ?>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <?= $this->headTitle('EasyT Electric Manager')->setSeparator(' - ')->setAutoEscape(false) ?>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('EasyT Electric Manager')->setSeparator(' - ')->setAutoEscape(false) ?>
 
-        <?= $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
 
-        <!-- Le styles -->
-        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
-            ->prependStylesheet($this->basePath('css/style.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-        ?>
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->prependStylesheet($this->basePath('css/style.css'))
+        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+    ?>
 
-        <!-- Scripts -->
-        <?= $this->headScript()
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
-        ?>
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?= $this->url('home') ?>">
-                        <img src="<?= $this->basePath('img/logo_easyt.png') ?>" height="28" alt="Zend Framework <?= \Application\Module::VERSION ?>"/>&nbsp;Electric Manager
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse pull-right">
-                    <ul class="nav navbar-nav">
-                        <li class=""><a href="<?= $this->url('home') ?>">Home</a></li>
-                        <li class=""><a href="<?= $this->url('tomadas') ?>">Tomadas</a></li>
-                        <li class=""><a href="<?= $this->url('agenda') ?>">Agenda</a></li>
-                        <li class=""><a href="<?= $this->url('relatorios') ?>">Relatórios</a></li>
-                        <li class=""><a href="<?= $this->url('configuracoes') ?>">Configurações</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <!-- Scripts -->
+    <?= $this->headScript()
+        ->prependFile($this->basePath('js/bootstrap.min.js'))
+        ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+    ?>
+</head>
+<body>
+<?php if ($this->identity()): ?>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <?= $this->content ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p>
-            </footer>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<?= $this->url('home') ?>">
+                    <img src="<?= $this->basePath('img/logo_easyt.png') ?>" height="28"
+                         alt="Zend Framework <?= \Application\Module::VERSION ?>"/>&nbsp;Electric Manager
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class=""><a href="<?= $this->url('home') ?>">Home</a></li>
+                    <li class=""><a href="<?= $this->url('tomadas') ?>">Tomadas</a></li>
+                    <li class=""><a href="<?= $this->url('agenda') ?>">Agenda</a></li>
+                    <li class=""><a href="<?= $this->url('relatorios') ?>">Relatórios</a></li>
+                    <li class=""><a href="<?= $this->url('admin-configuracoes/configuracoes') ?>">Configurações</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $this->identity(); ?> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->url('logout') ?>">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
         </div>
-        <?= $this->inlineScript() ?>
-    </body>
+    </nav>
+<?php endif; ?>
+<div class="container">
+    <?= $this->content ?>
+    <?php if ($this->identity()): ?>
+        <footer>
+            <p>&copy; 2017 - <?= date('Y') ?> by EasyTech Ltd. All rights reserved.</p>
+        </footer>
+    <?php endif; ?>
+</div>
+<?= $this->inlineScript() ?>
+</body>
 </html>

@@ -24,7 +24,7 @@ $idpermissao->setAttribute('placeholder', 'Idpermissao');
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
 
-$form->setAttribute('action', $this->url('configuracoes', ['action' => 'adduser']));
+$form->setAttribute('action', $this->url('admin-configuracoes/configuracoes', ['action' => 'adduser']));
 $form->prepare();
 
 echo $this->form()->openTag($form);

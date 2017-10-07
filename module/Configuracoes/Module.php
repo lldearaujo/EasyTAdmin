@@ -9,15 +9,12 @@
 
 namespace Configuracoes;
 
+use Ccnfiguracoes\Form\Factory\UsuarioFormFactory;
 use Configuracoes\Controller\ConfiguracoesController;
 use Configuracoes\Controller\Factory\ConfiguracoesControllerFactory;
-use Configuracoes\Form\Factory\UsuarioFormFactory;
 use Configuracoes\Form\UsuarioForm;
 use Configuracoes\Model\Factory\UsuarioTableFactory;
 use Configuracoes\Model\Factory\UsuarioTableGatewayFactory;
-use Zend\Db\Adapter\AdapterInterface;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ControllerProviderInterface;

@@ -8,18 +8,10 @@
 
 namespace Configuracoes\Model;
 
-
-
 use Configuracoes\InputFilter\UsuarioInputFilter;
-use Zend\Filter\StringTrim;
-use Zend\InputFilter\InputFilter;
-use Zend\Filter\StripTags;
-use Zend\Filter\ToInt;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\Mvc\Exception\DomainException;
-use Zend\Validator\NotEmpty;
-use Zend\Validator\StringLength;
 
 class Usuario implements InputFilterAwareInterface
 {
@@ -69,10 +61,4 @@ class Usuario implements InputFilterAwareInterface
         $this->inputFilter = $inputFilter;
         return $this->inputFilter;
     }
-
-
-
-
-
-
 }

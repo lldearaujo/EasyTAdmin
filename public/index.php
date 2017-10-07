@@ -4,7 +4,7 @@ use Zend\Mvc\Application;
 use Zend\Stdlib\ArrayUtils;
 
 /**
- * Mostra todos os erros quando o APLICATION_ENV está em desenvolvimento
+ * Mostra todos os erros quando o APLICATION_ENV esta em desenvolvimento
  */
 if ($_SERVER['APPLICATION_ENV'] === 'development'){
     error_reporting(E_ALL);

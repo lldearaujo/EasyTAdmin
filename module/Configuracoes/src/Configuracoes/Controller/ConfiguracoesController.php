@@ -9,8 +9,6 @@
 
 namespace Configuracoes\Controller;
 
-use Configuracoes\InputFilter\UsuarioInputFilter;
-use Configuracoes\Model\Permissao;
 use Configuracoes\Form\UsuarioForm;
 use Configuracoes\Model\Usuario;
 use Configuracoes\Model\UsuarioTable;
@@ -59,34 +57,7 @@ class ConfiguracoesController extends AbstractActionController
         //$form->setData($request->getPost());
         $usuario->exchangeArray($form->getData());
         $this->table->saveUser($usuario);
-        return $this->redirect()->toRoute('configuracoes');
-    }
-
-    //Método para adicionar permissão
-    public function addpermissaoAction()
-    {
-
-        $form = $this->form;
-        $form->get('submit')->setValue('Adicionar');
-
-        $request = $this->getRequest();
-
-        if (!$request->isPost()) {
-            return ['form' => $form];
-        }
-
-        $permissao = new Permissao();
-        $form->setInputFilter($permissao->getInputFilter());
-        $form->setData($request->getPost());
-
-        if (!$form->isValid()) {
-            return ['form' => $form];
-        }
-
-        $permissao->exchangeArray($form->getData());
-        $this->tableper->savePermissao($permissao);
-        return $this->redirect()->toRoute('configuracoes');
-
+        return $this->redirect()->toRoute('admin-configuracoes/configuracoes');
     }
 
 
@@ -96,7 +67,7 @@ class ConfiguracoesController extends AbstractActionController
         $id = (int)$this->params()->fromRoute('id', 0);
 
         if (0 === $id) {
-            return $this->redirect()->toRoute('configuracoes', ['action' => 'adduser']);
+            return $this->redirect()->toRoute('admin-configuracoes/configuracoes', ['action' => 'adduser']);
         }
 
         // Recuperar o álbum com o id especificado. Isso aumenta
@@ -106,7 +77,7 @@ class ConfiguracoesController extends AbstractActionController
         try {
             $usuario = $this->table->getUsuario($id);
         } catch (\Exception $e) {
-            return $this->redirect()->toRoute('configuracoes', ['action' => 'index']);
+            return $this->redirect()->toRoute('admin-configuracoes/configuracoes', ['action' => 'index']);
         }
 
         $form = new UsuarioForm();
@@ -129,17 +100,17 @@ class ConfiguracoesController extends AbstractActionController
 
         $this->table->saveUser($usuario);
 
-        return $this->redirect()->toRoute('configuracoes', ['action' => 'index']);
+        return $this->redirect()->toRoute('admin-configuracoes/configuracoes', ['action' => 'index']);
     }
 
     public function deleteUserAction()
     {
         $id = (int)$this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('configuracoes');
+            return $this->redirect()->toRoute('admin-configuracoes/configuracoes');
         }
         $this->table->deleteUser($id);
-        return $this->redirect()->toRoute('configuracoes');
+        return $this->redirect()->toRoute('admin-configuracoes/configuracoes');
     }
 
 }

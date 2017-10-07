@@ -19,7 +19,7 @@ $abas->setAttribute('placeholder', 'Abas');
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
 
-$form->setAttribute('action', $this->url('configuracoes', ['action' => 'addpermissao']));
+$form->setAttribute('action', $this->url('admin-configuracoes/configuracoes', ['action' => 'addpermissao']));
 $form->prepare();
 
 echo $this->form()->openTag($form);

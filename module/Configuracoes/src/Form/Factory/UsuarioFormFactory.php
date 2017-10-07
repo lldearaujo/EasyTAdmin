@@ -1,6 +1,6 @@
 <?php
 
-namespace Configuracoes\Form\Factory;
+namespace Ccnfiguracoes\Form\Factory;
 
 
 

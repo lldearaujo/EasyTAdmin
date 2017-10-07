@@ -17,6 +17,7 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
             'Zend\\Validator\\' => 15,
             'Zend\\Uri\\' => 9,
             'Zend\\Stdlib\\' => 12,
+            'Zend\\Session\\' => 13,
             'Zend\\ServiceManager\\' => 20,
             'Zend\\Router\\' => 12,
             'Zend\\Mvc\\' => 9,
@@ -35,6 +36,7 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
             'Zend\\Config\\' => 12,
             'Zend\\ComponentInstaller\\' => 24,
             'Zend\\Code\\' => 10,
+            'Zend\\Authentication\\' => 20,
             'ZendDeveloperTools\\' => 19,
             'ZF\\DevelopmentMode\\' => 19,
         ),
@@ -86,6 +88,10 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
         'Zend\\Stdlib\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\Session\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-session/src',
         ),
         'Zend\\ServiceManager\\' => 
         array (
@@ -159,6 +165,10 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
         ),
+        'Zend\\Authentication\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-authentication/src',
+        ),
         'ZendDeveloperTools\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-developer-tools/src',
@@ -169,7 +179,7 @@ class ComposerStaticInit1b30c87a6fcae91464206bbe23e89757
         ),
         'User\\' => 
         array (
-            0 => __DIR__ . '/../..',
+            0 => __DIR__ . '/../..' . '/module/User/src',
         ),
         'Tomadas\\' => 
         array (

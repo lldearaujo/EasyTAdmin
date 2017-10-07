@@ -1,4 +1,8 @@
 <?php
+
+use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
+
 return [
     'controllers' => [
         'factories' => [
@@ -9,27 +13,36 @@ return [
 
     'router' => [
         'routes' => [
-            'configuracoes' => [
-                'type' => Segment::class,
+            'admin-configuracoes' => [
+                'type' => Literal::class,
                 'options' => [
-                    'route' => '/configuracoes[/:action[/:id]]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+',
-                    ],
-                    'defaults' => [
-                        'controller' => Configuracoes\Controller\ConfiguracoesController::class,
-                        'action' => 'index',
-                    ],
+                    'route' => '/admin'
                 ],
+                'may_terminate' => false,
+                'child_routes' => [
+                    'configuracoes' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/configuracoes[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]+',
+                            ],
+                            'defaults' => [
+                                'controller' => Configuracoes\Controller\ConfiguracoesController::class,
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                ]
             ],
-        ],
+        ]
     ],
 
 
     'view_manager' => [
         'template_path_stack' => [
-            'configuracoes' => __DIR__ . "/../view"
+            'admin-configuracoes/configuracoes' => __DIR__ . "/../view"
         ]
 
     ]
